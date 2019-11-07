@@ -124,7 +124,7 @@ class _ShopInfoPageState extends State<ShopInfoPage> {
             );
           },
           child: Text(
-            DateFormat('kk:mm a').format(_beginWorkTime),
+            DateFormat('kk:mm').format(_beginWorkTime),
             style: TextStyle(
               fontSize: 15,
               color: Colors.blue,
@@ -153,7 +153,7 @@ class _ShopInfoPageState extends State<ShopInfoPage> {
             );
           },
           child: Text(
-            DateFormat('kk:mm a').format(_endWorkTime),
+            DateFormat('kk:mm').format(_endWorkTime),
             style: TextStyle(
               fontSize: 15,
               color: Colors.blue,
