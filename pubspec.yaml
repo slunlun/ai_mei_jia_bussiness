@@ -26,6 +26,11 @@ dependencies:
 
   image_picker:
 
+  flutter_datetime_picker: ^1.2.8
+
+  # format Datetime
+  intl: ^0.16.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ai_mei_jia_bussiness/common/info_textField.dart';
 import 'package:ai_mei_jia_bussiness/common/title_checkbox.dart';
 import 'package:ai_mei_jia_bussiness/common/section_header.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:intl/intl.dart';
 
 class ShopInfoPage extends StatefulWidget {
   @override
@@ -12,8 +14,8 @@ class _ShopInfoPageState extends State<ShopInfoPage> {
   TextEditingController _shopNameController;
   TextEditingController _shopAddressController;
 
-  TimeOfDay _beginWorkTime;
-  TimeOfDay _endWorkTime;
+  DateTime _beginWorkTime = DateTime.now();
+  DateTime _endWorkTime = DateTime.now();
 
   bool _freeCheLiang = true;
   bool _freeDesign = true;
@@ -111,14 +113,18 @@ class _ShopInfoPageState extends State<ShopInfoPage> {
           padding: EdgeInsets.only(left: 15),
         ),
         GestureDetector(
-          onTap: () async {
-            TimeOfDay initTime = TimeOfDay.now();
-            _beginWorkTime =
-                await showTimePicker(context: context, initialTime: initTime);
-            print(_beginWorkTime.toString());
+          onTap: () {
+            DatePicker.showTimePicker(
+              context,
+              locale: LocaleType.zh,
+              currentTime: _beginWorkTime,
+              onConfirm: (date) {
+                updateBeginWorkTime(date);
+              }
+            );
           },
           child: Text(
-            "09:00 AM",
+            DateFormat('kk:mm a').format(_beginWorkTime),
             style: TextStyle(
               fontSize: 15,
               color: Colors.blue,
@@ -136,14 +142,18 @@ class _ShopInfoPageState extends State<ShopInfoPage> {
           ),
         ),
         GestureDetector(
-          onTap: () async {
-            TimeOfDay initTime = TimeOfDay.now();
-            _endWorkTime =
-                await showTimePicker(context: context, initialTime: initTime);
-            print(_endWorkTime.toString());
+          onTap: () {
+            DatePicker.showTimePicker(
+                context,
+                locale: LocaleType.zh,
+                currentTime: _endWorkTime,
+                onConfirm: (date) {
+                  updateEndWorkTime(date);
+                }
+            );
           },
           child: Text(
-            "18:00 PM",
+            DateFormat('kk:mm a').format(_endWorkTime),
             style: TextStyle(
               fontSize: 15,
               color: Colors.blue,
@@ -209,5 +219,17 @@ class _ShopInfoPageState extends State<ShopInfoPage> {
         ],
       ),
     );
+  }
+
+  void updateBeginWorkTime(DateTime workTime) {
+    setState(() {
+      _beginWorkTime = workTime;
+    });
+  }
+
+  void updateEndWorkTime(DateTime workTime) {
+    setState(() {
+      _endWorkTime = workTime;
+    });
   }
 }
