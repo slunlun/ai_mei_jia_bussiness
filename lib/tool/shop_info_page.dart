@@ -61,11 +61,13 @@ class _ShopInfoPageState extends State<ShopInfoPage> {
             SectionHeader(
               title: "店面标签",
               backgroundColor: Colors.black12,
+              titleColor: Colors.black54,
             ),
             _buildShopTaps(),
             SectionHeader(
               title: "店面通知",
               backgroundColor: Colors.black12,
+              titleColor: Colors.black54,
             ),
             TextField(
               maxLength: 200,

@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:ai_mei_jia_bussiness/tool/tool_button.dart';
 import 'dart:async';
 import 'dart:io';
+import 'package:ai_mei_jia_bussiness/common/config.dart';
 
 class CommodityInfoPage extends StatefulWidget {
   @override
@@ -30,24 +31,47 @@ class _CommodityInfoPageState extends State<CommodityInfoPage> {
             SectionHeader(
               title: '商品名称',
               backgroundColor: Colors.white10,
+              titleColor: Colors.black54,
             ),
             Container(
-              margin: EdgeInsets.only(left: 10, right: 10, top: 10),
+              margin: EdgeInsets.only(
+                  left: Config.GLOBAL_LEFT_RIGHT_MARGIN,
+                  right: Config.GLOBAL_LEFT_RIGHT_MARGIN,
+                  top: Config.GLOBAL_TOP_BOTTOM_MARGIN),
               child: TextField(
                 maxLength: 30,
                 maxLines: 5,
                 decoration: InputDecoration(
-                    hintText: '例如，XX地板J100',
+                    hintText: '例如，XX地板 型号J100',
                     contentPadding: EdgeInsets.all(10.0),
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15.0),
+                      borderSide: BorderSide(
+                        color: Colors.black12,
+                      ),
                     )),
               ),
             ),
-            ToolButton(
-              title: "图片",
-              icon: Icons.photo_camera,
-              onPressed: getImage,
+            Row(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: Config.GLOBAL_LEFT_RIGHT_MARGIN,
+                      bottom: Config.GLOBAL_TOP_BOTTOM_MARGIN),
+                ),
+                Container(
+                  margin: EdgeInsets.all(5.0),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black12),
+
+                  ),
+                  child: ToolButton(
+                    title: "商品图",
+                    icon: Icons.photo_camera,
+                    iconColor: Colors.black26,
+                    onPressed: getImage,
+                  ),
+                ),
+              ],
             ),
             _image == null ? Text("a pic") : Image.file(_image),
           ],
@@ -55,7 +79,7 @@ class _CommodityInfoPageState extends State<CommodityInfoPage> {
       ),
     );
   }
-  
+
   File _image;
 
   void getImage() async {

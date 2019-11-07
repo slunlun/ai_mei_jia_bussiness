@@ -53,6 +53,7 @@ class ToolPage extends StatelessWidget {
               ToolButton(
                 title: "店面信息",
                 icon: Icons.store,
+                iconColor: Colors.red,
                 onPressed: (){
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (context){
@@ -64,6 +65,7 @@ class ToolPage extends StatelessWidget {
               ToolButton(
                 title: "商品管理",
                 icon: Icons.gradient,
+                iconColor: Colors.red,
                 onPressed: (){
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context){
@@ -75,6 +77,7 @@ class ToolPage extends StatelessWidget {
               ToolButton(
                 title: "评论管理",
                 icon: Icons.chat,
+                iconColor: Colors.red,
                 onPressed: (){
                   print("评论管理 click");
                 },
@@ -82,6 +85,7 @@ class ToolPage extends StatelessWidget {
               ToolButton(
                 title: "人员管理",
                 icon: Icons.people,
+                iconColor: Colors.red,
                 onPressed: (){
                   print("人员管理 click");
                 },
@@ -106,6 +110,7 @@ class ToolPage extends StatelessWidget {
               ToolButton(
                 title: "拼单",
                 icon: Icons.grain,
+                iconColor: Colors.red,
                 onPressed: (){
                   print("拼单 click");
                 },
@@ -113,6 +118,7 @@ class ToolPage extends StatelessWidget {
               ToolButton(
                 title: "折扣券",
                 icon: Icons.monetization_on,
+                iconColor: Colors.red,
                 onPressed: (){
                   print("折扣券 click");
                 },
@@ -120,6 +126,7 @@ class ToolPage extends StatelessWidget {
               ToolButton(
                 title: "优惠券",
                 icon: Icons.account_balance_wallet,
+                iconColor: Colors.red,
                 onPressed: (){
                   print("优惠券 click");
                 },

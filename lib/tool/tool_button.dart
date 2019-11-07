@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 class ToolButton extends StatelessWidget {
-  ToolButton({Key key, this.icon, this.title, this.onPressed})
+  ToolButton({Key key, this.icon, this.title, this.onPressed, this.iconColor})
       : super(key: key);
   final VoidCallback onPressed;
   final IconData icon;
   final String title;
+  final Color iconColor;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +22,7 @@ class ToolButton extends StatelessWidget {
               Icon(
                 icon,
                 size: 40.0,
-                color: Colors.red,
+                color: iconColor,
               ),
               Text(
                 title,
