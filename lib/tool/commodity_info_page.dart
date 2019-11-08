@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:ai_mei_jia_bussiness/tool/tool_button.dart';
 import 'dart:io';
 import 'package:ai_mei_jia_bussiness/common/config.dart';
+import 'package:ai_mei_jia_bussiness/common/precision_limit_formatter.dart';
 
 class ImageView extends StatelessWidget {
   ImageView({Key key, this.image, this.callBack}) : super(key: key);
@@ -24,7 +25,11 @@ class ImageView extends StatelessWidget {
         ),
         GestureDetector(
           onTap: callBack,
-          child: Icon(Icons.remove_circle, color: Colors.red, size: 30.0,),
+          child: Icon(
+            Icons.remove_circle,
+            color: Colors.red,
+            size: 30.0,
+          ),
         ),
       ],
     );
@@ -60,7 +65,7 @@ class _CommodityInfoPageState extends State<CommodityInfoPage> {
               SectionHeader(
                 title: '商品名称',
                 backgroundColor: Colors.white10,
-                titleColor: Colors.black54,
+                titleColor: Colors.black,
               ),
               Container(
                 margin: EdgeInsets.only(
@@ -84,6 +89,33 @@ class _CommodityInfoPageState extends State<CommodityInfoPage> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: _buildCommodityImageViewList(),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: Config.GLOBAL_TOP_BOTTOM_MARGIN),
+              ),
+              _buildCommodityPriceRow(),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: Config.GLOBAL_TOP_BOTTOM_MARGIN * 5,
+                  left: Config.GLOBAL_LEFT_RIGHT_MARGIN,
+                  right: Config.GLOBAL_LEFT_RIGHT_MARGIN,
+                  bottom: Config.GLOBAL_TOP_BOTTOM_MARGIN,
+                ),
+                child: MaterialButton(
+                  minWidth: double.infinity,
+                  height: 60,
+                  color: Colors.red,
+                  textColor: Colors.white,
+                  child: Text(
+                    '保  存',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
+                  ),
+                  onPressed: () {
+
+                  },
                 ),
               ),
             ],
@@ -123,8 +155,9 @@ class _CommodityInfoPageState extends State<CommodityInfoPage> {
       commodityImageViewList.add(
         Container(
           margin: EdgeInsets.all(5.0),
-          child: ImageView(image: image,
-            callBack: (){
+          child: ImageView(
+            image: image,
+            callBack: () {
               removeImage(image);
             },
           ),
@@ -147,5 +180,58 @@ class _CommodityInfoPageState extends State<CommodityInfoPage> {
       ),
     );
     return commodityImageViewList;
+  }
+
+  Row _buildCommodityPriceRow() {
+    return Row(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(
+            left: Config.GLOBAL_LEFT_RIGHT_MARGIN,
+            top: Config.GLOBAL_TOP_BOTTOM_MARGIN,
+            right: Config.GLOBAL_LEFT_RIGHT_MARGIN / 2,
+          ),
+        ),
+        Text(
+          "原价￥",
+          style: TextStyle(fontSize: 16.0),
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: 5),
+        ),
+        Container(
+          width: 80,
+          child: TextField(
+            inputFormatters: [PrecisionLimitFormatter(2)],
+            keyboardType: TextInputType.numberWithOptions(decimal: true),
+            onChanged: (v) {},
+            onSubmitted: (v) {
+              print("原价 $v");
+            },
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: 5, right: 10),
+        ),
+        Text(
+          "平台价￥",
+          style: TextStyle(fontSize: 16.0),
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: 5),
+        ),
+        Container(
+          width: 80,
+          child: TextField(
+            inputFormatters: [PrecisionLimitFormatter(2)],
+            keyboardType: TextInputType.numberWithOptions(decimal: true),
+            onChanged: (v) {},
+            onSubmitted: (v) {
+              print("平台价 $v");
+            },
+          ),
+        ),
+      ],
+    );
   }
 }

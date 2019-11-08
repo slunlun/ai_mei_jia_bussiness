@@ -4,6 +4,7 @@ import 'package:ai_mei_jia_bussiness/common/title_checkbox.dart';
 import 'package:ai_mei_jia_bussiness/common/section_header.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:ai_mei_jia_bussiness/common/config.dart';
 
 class ShopInfoPage extends StatefulWidget {
   @override
@@ -34,9 +35,8 @@ class _ShopInfoPageState extends State<ShopInfoPage> {
           style: new TextStyle(fontSize: 20.0, color: Colors.white),
         ),
       ),
-
       body: GestureDetector(
-        onTap:(){
+        onTap: () {
           FocusScope.of(context).requestFocus(new FocusNode());
         },
         child: ListView(
@@ -75,10 +75,16 @@ class _ShopInfoPageState extends State<ShopInfoPage> {
               maxLength: 200,
               maxLines: 5,
             ),
-            Container(
-              height: 60,
-              padding: EdgeInsets.only(left: 50, right: 50, top: 10),
-              child:  MaterialButton(
+            Padding(
+              padding: EdgeInsets.only(
+                top: Config.GLOBAL_TOP_BOTTOM_MARGIN * 2,
+                left: Config.GLOBAL_LEFT_RIGHT_MARGIN,
+                right: Config.GLOBAL_LEFT_RIGHT_MARGIN,
+                bottom: Config.GLOBAL_TOP_BOTTOM_MARGIN,
+              ),
+              child: MaterialButton(
+                minWidth: double.infinity,
+                height: 60,
                 color: Colors.red,
                 textColor: Colors.white,
                 child: Text(
@@ -92,7 +98,6 @@ class _ShopInfoPageState extends State<ShopInfoPage> {
                 },
               ),
             ),
-
           ],
         ),
       ),
@@ -114,14 +119,11 @@ class _ShopInfoPageState extends State<ShopInfoPage> {
         ),
         GestureDetector(
           onTap: () {
-            DatePicker.showTimePicker(
-              context,
-              locale: LocaleType.zh,
-              currentTime: _beginWorkTime,
-              onConfirm: (date) {
-                updateBeginWorkTime(date);
-              }
-            );
+            DatePicker.showTimePicker(context,
+                locale: LocaleType.zh,
+                currentTime: _beginWorkTime, onConfirm: (date) {
+              updateBeginWorkTime(date);
+            });
           },
           child: Text(
             DateFormat('kk:mm').format(_beginWorkTime),
@@ -143,14 +145,11 @@ class _ShopInfoPageState extends State<ShopInfoPage> {
         ),
         GestureDetector(
           onTap: () {
-            DatePicker.showTimePicker(
-                context,
+            DatePicker.showTimePicker(context,
                 locale: LocaleType.zh,
-                currentTime: _endWorkTime,
-                onConfirm: (date) {
-                  updateEndWorkTime(date);
-                }
-            );
+                currentTime: _endWorkTime, onConfirm: (date) {
+              updateEndWorkTime(date);
+            });
           },
           child: Text(
             DateFormat('kk:mm').format(_endWorkTime),
